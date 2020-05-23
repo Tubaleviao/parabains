@@ -14,6 +14,6 @@ You can use this app at
 ```https://tuba.work/parabains```
 
 # TODO
-  *Calculate positions for more names.
-  *Add parameter to handle multiple languages.
-  *Add different animations.
+  * Calculate positions for more names.
+  * Add parameter to handle multiple languages.
+  * Add different animations.
