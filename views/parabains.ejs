@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <title>Parabains</title>
+        <link rel="stylesheet" type="text/css" href="parabains.css">
+    </head>
+    <body>
+        <script>
+            let getNames = () => '<%=names%>'.split(',')
+        </script>
+        <h1>Feliz Aniversário!</h1>
+        <div id="space">
+            <div id="e">E</div>
+            <div id="orbit"></div>
+        </div>
+
+        <script>
+            Object.defineProperty(Array.prototype, 'shuffle', {
+                value: function() {
+                    for (let i = this.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [this[i], this[j]] = [this[j], this[i]];
+                    }
+                    return this;
+                }
+            })
+
+            let getPositions = t => {
+                let pos = []
+                let totalW = document.getElementById("orbit").offsetWidth+100
+                let totalH = document.getElementById("orbit").offsetHeight+100
+                for(let i=0, j=t-1; i<t; i++, j--){ // fix it later
+                    // top=200 left=0 inc=400/3
+                    // [200,0], [100,300], [300,300] // 3
+                    // [200,0], [0,200], [200,400], [400,200] // 4
+                    // [200,0], [50,150], [150,350], [350,350], [350,150] // 5
+                    pos.push([i*totalW, j*totalH]) // top, left
+                }
+                console.log(pos)
+                return [[80,-80], [50, 110]]
+            }
+            //console.log(document.getElementsByClassName("place"))
+            let pos = getPositions(getNames().length)
+            getNames().shuffle().forEach((n, i) => {
+                let name = document.createElement("DIV")
+                name.classList.add("name") 
+                let str = document.createTextNode(n);
+                name.appendChild(str)
+                name.style.top = (pos[i][0]+"px")
+                name.style.left = (pos[i][1]+"px")
+                document.getElementById("orbit").appendChild(name)
+            });
+            
+        </script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+    </body>
+</html>
